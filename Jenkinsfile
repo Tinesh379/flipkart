@@ -16,9 +16,8 @@ pipeline{
     }
     post{
         success{
-            when{
-                branch 'main'
-                beforeAgent true
+            script{
+                println "This is Windows Machine"
             }
         }
     }
