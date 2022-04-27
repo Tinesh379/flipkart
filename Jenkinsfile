@@ -23,6 +23,12 @@ pipeline{
                 echo "${env.BUILD_NUMBER}"
             }
         }
+        stage('Assign Build Version'){
+            steps{
+                env.buildVersion = ${env.BUILD_NUMBER}
+                echo "${env.buildVersion}"
+            }
+        }
     }
     post{
         success{
