@@ -18,8 +18,10 @@ pipeline{
         }
         stage('status'){
             steps{
+                echo '${env.buildVersion}'
+                echo '${env.BUILD_NUMBER}'
                 script{
-                    if(currentBuild.result == "SUCCESS"){
+                    if(${currentBuild.result} == "SUCCESS"){
                         env.buildVesrion = ${env.BUILD_NUMBER}
                         println "$buildVersion"
                     }
@@ -34,13 +36,6 @@ pipeline{
         success{
             script{
                 println "This is Windows Machine"
-                if(currentBuild.result == "SUCCESS"){
-                        env.buildVesrion = ${env.BUILD_NUMBER}
-                        println "$buildVersion"
-                    }
-                    else{
-                        println "build status is not ok"
-                    }
             }
         }
     }
