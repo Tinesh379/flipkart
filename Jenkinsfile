@@ -25,8 +25,7 @@ pipeline{
         }
         stage('Assign Build Version'){
             steps{
-                env.buildVersion = ${env.BUILD_NUMBER}
-                echo "${env.buildVersion}"
+                echo "package version is ${assignBuildVersion()}"
             }
         }
     }
@@ -37,4 +36,8 @@ pipeline{
             }
         }
     }
+}
+
+def assignBuildVersion(){
+    return env.BRANCH_NAME == 'main'? "${env.BUILD_NUMBER}" : "${env.BUILD_NUMBER}-SNAPSHOT"
 }
