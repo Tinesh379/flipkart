@@ -34,6 +34,13 @@ pipeline{
         success{
             script{
                 println "This is Windows Machine"
+                if(currentBuild.result == "SUCCESS"){
+                        env.buildVesrion = ${env.BUILD_NUMBER}
+                        println "$buildVersion"
+                    }
+                    else{
+                        println "build status is not ok"
+                    }
             }
         }
     }
