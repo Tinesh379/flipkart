@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        buildVesrion = ""
+    }
     stages{
         stage('tools'){
             steps{
@@ -11,6 +14,19 @@ pipeline{
         stage('test'){
             steps{
                   echo 'Hello world'
+            }
+        }
+        stage('status'){
+            steps{
+                script{
+                    if(currentBuild.result == "SUCCESS"){
+                        env.buildVesrion = ${env.BUILD_NUMBER}
+                        println "$buildVersion"
+                    }
+                    else{
+                        println "build status is not ok"
+                    }
+                }
             }
         }
     }
