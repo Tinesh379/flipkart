@@ -6,7 +6,8 @@ pipeline{
     stages{
         stage('tools'){
             steps{
-                 bat 'mvn -v'
+
+                bat 'mvn -v'
                 bat 'git version'
             }
            
@@ -16,19 +17,10 @@ pipeline{
                   echo 'Hello world'
             }
         }
-        stage('status'){
+        stage('Build Num'){
             steps{
-                echo '${env.buildVersion}'
-                echo '${env.BUILD_NUMBER}'
-                script{
-                    if(${currentBuild.result} == "SUCCESS"){
-                        env.buildVesrion = ${env.BUILD_NUMBER}
-                        println "$buildVersion"
-                    }
-                    else{
-                        println "build status is not ok"
-                    }
-                }
+                echo "${env.buildVersion}"
+                echo "${env.BUILD_NUMBER}"
             }
         }
     }
