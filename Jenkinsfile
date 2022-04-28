@@ -3,6 +3,11 @@ pipeline{
     environment{
         buildVesrion = ""
     }
+    options {
+  timeout(5)
+  buildDiscarder logRotator(artifactDaysToKeepStr: '1', artifactNumToKeepStr: '4', daysToKeepStr: '', numToKeepStr: '4')
+}
+
     stages{
         stage('tools'){
             steps{
